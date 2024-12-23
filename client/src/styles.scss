@@ -1,0 +1,234 @@
+/* You can add global styles to this file, and also import other style files */
+@import "styles/ag-grid-historic-table.scss";
+@import "styles/ag-grid-forcast-table";
+
+.ag-root-wrapper.ag-layout-normal {
+  height: 53vh !important;
+  margin: 0 20px;
+}
+
+.mat-menu-content {
+  display: flex !important;
+}
+
+.mat-menu-panel .mat-menu-content {
+  padding: 10px !important;
+}
+
+.mat-menu-panel {
+  max-width: fit-content !important;
+}
+
+.mat-menu-panel .mat-menu-content .mat-menu-item {
+  border-bottom: none !important;
+}
+
+button.bricks-button bricks-icon:last-child {
+  margin-left: 0 !important;
+}
+
+.content-area {
+  padding: 0px !important;
+  overflow-y: hidden !important;
+}
+
+.cdk-global-scrollblock {
+  overflow-y: initial !important;
+}
+
+bricks-app-frame {
+  grid-template-rows: auto !important;
+}
+
+bricks-chip .bricks-chip__label {
+  font-size: 16px;
+}
+
+.mat-dialog-container {
+  border-radius: 0.5rem !important;
+  width: auto !important;
+}
+
+#close-modal > .bricks-modal-header {
+  padding: var(--spacing-m) 0 !important;
+}
+
+.paste-data > .bricks-modal-footer {
+  justify-content: space-between !important;
+  padding: var(--spacing-m) 0 !important;
+}
+
+.ag-ltr .ag-cell {
+  border-right: var(--ag-borders-row) var(--ag-row-border-color) !important;
+}
+
+.mat-form-field-flex {
+  border: 1px solid #e5e5f4;
+  border-radius: 4px;
+}
+
+.mat-form-field-suffix {
+  :hover {
+    cursor: pointer;
+  }
+}
+
+mat-label {
+  font-size: 14px;
+}
+
+body .mat-mdc-dialog-container .mdc-dialog__surface {
+  padding: 0 30px !important;
+}
+
+.bricks-modal-body {
+  display: flex;
+  align-items: baseline;
+  padding: var(--spacing-m) 0 0 0 !important;
+  justify-content: space-between;
+
+  .mat-form-field {
+    margin-right: 15px;
+  }
+
+  .paste-excel {
+    padding-bottom: 20px;
+  }
+}
+
+.copypaste-excel
+  > .mat-select-trigger
+  > .mat-select-arrow-wrapper
+  > .mat-select-arrow {
+  display: none;
+}
+
+.upload-datafield > .mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
+.upload-datafield > .mat-form-field-wrapper > .mat-form-field-flex {
+  padding-left: 0;
+  background-color: transparent !important;
+  pointer-events: none !important;
+  text-align: center;
+}
+
+.upload-datafield
+  > .mat-form-field-wrapper
+  > .mat-form-field-flex
+  > .mat-form-field-infix {
+  border-top: none;
+}
+
+.copypaste-excel
+  > .mat-select-trigger
+  > .mat-select-value
+  > .mat-select-value-text {
+  font-size: 14px !important;
+}
+
+.upload-datafield.mat-form-field {
+  padding-top: 0;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-underline::before {
+  display: none;
+}
+
+.paste-excel > .bricks-modal-body {
+  max-width: 80vw;
+  max-height: 60vh;
+  overflow: auto;
+  display: grid;
+}
+
+.bricks-modal-footer {
+  padding: var(--spacing-m) 0 !important;
+}
+
+.chart-header > .bricks-modal-header {
+  padding: 0 var(--spacing-m) !important;
+}
+
+.chart-modal {
+  min-width: 74vw;
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.download-header > .bricks-modal-header {
+  padding: var(--spacing-m) 0 !important;
+}
+
+.download-button > .bricks-modal-footer {
+  padding: var(--spacing-m) 0 0 0 !important;
+}
+
+bricks-menu-item.flag-icon:hover {
+  background-color: #edf6fb !important;
+}
+
+bricks-menu-item.flag-icon:active {
+  background-color: #f3f3f3 !important;
+}
+
+button.menu-item-container {
+  background-color: transparent !important;
+}
+
+.margin-bottom {
+  margin: var(--spacing-s) 0 var(--spacing-l) 0 !important;
+}
+
+.story-container {
+  margin: 0 !important;
+  height: 100vh;
+}
+
+.card {
+  margin-top: var(--spacing-m) !important;
+}
+
+#scenarioUpload > mat-form-field {
+  width: 270px !important;
+  margin-right: 20px;
+}
+
+.upload-field > mat-form-field {
+  width: 270px !important;
+  margin-right: 20px;
+}
+
+.chart-body > .bricks-modal-body {
+  display: grid !important;
+  justify-content: unset !important;
+}
+
+.ag-header-row:not(:first-child)
+  .ag-header-cell:not(.ag-header-span-height.ag-header-span-total) {
+  border-top: none !important;
+}
+
+.mat-mdc-form-field {
+  display: block !important;
+}
+
+.flag-icon {
+  margin-left: 12px;
+  cursor: pointer;
+  margin-bottom: 8vh;
+}
+
+.flag-icon-eu {
+  margin-top: 3vh;
+}
+
+.card.box-shadow {
+  margin: 20px;
+}
+
+.ag-header-group-cell .ag-header-cell-comp-wrapper {
+  position: absolute;
+  margin-top: 3.5%;
+}

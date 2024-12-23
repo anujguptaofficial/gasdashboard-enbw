@@ -1,0 +1,52 @@
+exclude: ^.vscode
+default_language_version:
+  python: python3.10
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-added-large-files
+      - id: check-ast
+      - id: check-case-conflict
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-toml
+      - id: check-vcs-permalinks
+      - id: check-yaml
+        args: [--allow-multiple-documents]
+      - id: detect-private-key
+      - id: detect-aws-credentials
+        args: [--allow-missing-credentials]
+      - id: pretty-format-json
+        args: [--no-sort-keys, --autofix]
+      - id: fix-encoding-pragma
+        args: [--remove]
+      - id: fix-byte-order-marker
+      - id: mixed-line-ending
+      - id: no-commit-to-branch
+        args: [--branch, master]
+      - id: sort-simple-yaml
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+  - repo: https://github.com/psf/black
+    rev: 23.12.0
+    hooks:
+      - id: black
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.7
+    hooks:
+      - id: ruff
+        args: [ --fix ]
+      - id: ruff-format
+  - repo: https://github.com/python-poetry/poetry
+    rev: '1.7.0'
+    hooks:
+      # These hooks are a workaround for NexusIQ not being able to omit checks on dev dependencies.
+      # Currently there is a CVE in the venv package which makes the azure pipeline fail.
+      - id: poetry-check
+      - id: poetry-lock
+        args: ["--no-update"]
+      - id: poetry-export
+        args: ["--without-hashes", "--without-urls", "-f", "requirements.txt", "-o", "requirements.txt"]

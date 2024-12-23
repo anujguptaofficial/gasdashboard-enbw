@@ -1,0 +1,63 @@
+<bricks-modal appKeyeventDirective (ctrlV)="jumpToPasteDialog()" (closeDialog)="closeDialog()">
+  <bricks-modal-header id="close-modal">
+    {{ fileSheetselection ? uploadExcelText : uploadPasteText }}
+  </bricks-modal-header>
+  <bricks-modal-body [ngClass]="fileSheetselection ? 'upload-excel' : 'paste-excel'">
+    <div class="upload-field">
+      <div>
+        <bricks-input-autocomplete id="scenarioUpload" label="Upload Scenario" class="mat-form-field-appearance-outline"
+          aria-invalid="true" minlength="4" maxlength="20" [(ngModel)]="scenarioText" icon="bricks-chevron-down"
+          (getValue)="onSelectedScenario($event)">
+          <bricks-option *ngFor="let item of scenarioNames" value="{{ item }}">{{ item }}</bricks-option>
+          <bricks-error>Scenario name should be more than 3 characters</bricks-error>
+        </bricks-input-autocomplete>
+      </div>
+      <mat-form-field class="mat-form-field-appearance-outline" floatLabel="always">
+        <mat-label>Forecast Period</mat-label>
+        <mat-select placeholder="{{ forecastPeriod }}" (valueChange)="onSelectForecast($event)">
+          <mat-option *ngFor="let option of selectForecast" value="{{ option }}">
+            {{ option }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div *ngIf="fileSheetselection; else pasteData">
+      <label for="file-upload" id="custom-file-upload">
+        <bricks-icon>bricks-circle-plus</bricks-icon>
+        <span class="file-title" [matTooltip]="fileNameTooltip">{{
+          !selectedFile ? "Choose file" : selectedFileName
+          }}</span>
+      </label>
+      <input class="bricks-button button-hi-density" id="file-upload" [(ngModel)]="forecastFile" name="file" type="file"
+        accept=".xlsx" #file (change)="onFileSelected($event)" required />
+    </div>
+    <ng-template #pasteData>
+      <app-copypaste-upload (onDataAdded)="getPastedData($event)"></app-copypaste-upload>
+    </ng-template>
+  </bricks-modal-body>
+  <bricks-modal-footer [ngClass]="fileSheetselection ? 'paste-data' : ''">
+    <button id="copy-paste" class="bricks-button" (click)="changeView()" [disabled]="selectedFile"
+      *ngIf="fileSheetselection && disableCopyPasteButton">
+      Or paste your data
+    </button>
+    <button class="bricks-button" id="upload" (click)="uploadFile(file)" [disabled]="!selectedFile || buttonCondition"
+      *ngIf="!successMessage && !errorMessage"
+      [matTooltip]="!selectedFile ? 'Please choose file to proceed' : 'Upload selected file or data'">
+      <svg class="spinner" viewBox="0 0 50 50" *ngIf="loading | async">
+        <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+      </svg>
+      {{ "Upload" }}
+    </button>
+    <span id="upload-message" *ngIf="successMessage || errorMessage" [style.color]="successMessage ? 'green' : 'red'"
+      style="font-weight: bold; padding-left: 20px">
+      {{ successMessage || errorMessage }}
+      <button class="bricks-button" (click)="uploadFile(file)" [disabled]="!this.inputFile.nativeElement.value"
+        *ngIf="buttonCondition">
+        <svg class="spinner" viewBox="0 0 50 50" *ngIf="loading | async">
+          <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+        </svg>
+        {{ successMessage ? "Upload another file" : "Try again" }}
+      </button>
+    </span>
+  </bricks-modal-footer>
+</bricks-modal>

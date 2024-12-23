@@ -1,0 +1,15 @@
+<bricks-modal class="chart-modal" (closeDialog)="closeDialog()">
+  <bricks-modal-header class="chart-header">
+    <h1>{{displayName}}</h1>
+  </bricks-modal-header>
+  <bricks-modal-body class="chart-body">
+    <h4>Historic Table</h4>
+    <div class="chart-container" style="height:400px; width: auto;">
+      <canvas class="line-chart" id="MyChart">{{ chart }}</canvas>
+    </div>
+    <h4 style="margin-block-start: 2em;">Forecast Table</h4>
+    <div class="chart-container" style="height:400px; width: auto;">
+      <canvas class="line-chart" id="MyForecastChart">{{ forecastChart }}</canvas>
+    </div>
+  </bricks-modal-body>
+</bricks-modal>

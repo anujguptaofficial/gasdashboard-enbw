@@ -1,0 +1,32 @@
+Resources:
+  LambdaKmsKey:
+    Type: AWS::KMS::Key
+    Properties:
+      Description: "Key for environment encryption of ${self:service} lambda functions"
+      KeyPolicy:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: "Allow"
+            Principal:
+              AWS: "*"
+            Action:
+              - "kms:Encrypt"
+              - "kms:Decrypt"
+              - "kms:ReEncrypt*"
+              - "kms:GenerateDataKey*"
+              - "kms:CreateGrant"
+              - "kms:DescribeKey"
+            Resource: "*"
+            Condition:
+              StringEquals:
+                "kms:ViaService": [
+                    !Sub "lambda.${AWS::Region}.amazonaws.com"
+                ]
+                "kms:CallerAccount": !Sub "${AWS::AccountId}"
+          - Effect: "Allow"
+            Principal:
+              AWS: !Sub "arn:aws:iam::${AWS::AccountId}:root"
+            Action:
+              - "kms:*"
+            Resource: "*"
+      PendingWindowInDays: 7

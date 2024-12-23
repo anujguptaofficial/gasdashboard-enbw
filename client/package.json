@@ -1,0 +1,124 @@
+{
+  "name": "gd-frontend",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build -c production --aot --build-optimizer && compress",
+    "watch": "ng build --watch --configuration development",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage --reporters=jest-junit",
+    "test:puppeteer": "node puppeteer.js",
+    "compress": "gzipper compress -t 0 --output-file-format [filename].[ext].[compressExt] --remove-larger ./dist",
+    "sync": "cd .. && npx sls s3sync --stage dev --region eu-central-1 --project-domain unset"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@ag-grid-community/angular": "~32.1.0",
+    "@ag-grid-community/client-side-row-model": "~32.1.0",
+    "@ag-grid-community/core": "~32.1.0",
+    "@ag-grid-community/csv-export": "~32.1.0",
+    "@ag-grid-community/infinite-row-model": "~32.1.0",
+    "@ag-grid-community/styles": "~32.1.0",
+    "@ag-grid-enterprise/excel-export": "~32.1.0",
+    "@ag-grid-enterprise/menu": "~32.1.0",
+    "@ag-grid-enterprise/server-side-row-model": "~32.1.0",
+    "@angular/animations": "~18.2.4",
+    "@angular/cdk": "~18.2.3",
+    "@angular/common": "~18.2.4",
+    "@angular/compiler": "~18.2.4",
+    "@angular/core": "~18.2.4",
+    "@angular/forms": "~18.2.4",
+    "@angular/material": "~18.2.3",
+    "@angular/material-moment-adapter": "~18.2.3",
+    "@angular/platform-browser": "~18.2.4",
+    "@angular/platform-browser-dynamic": "~18.2.4",
+    "@angular/router": "~18.2.4",
+    "@azure/msal-angular": "~3.0.23",
+    "@azure/msal-browser": "~3.23.0",
+    "@datadog/browser-rum": "~5.20.0",
+    "@enbw_bricks/ui": "~18.0.0",
+    "@ngrx/store": "~18.0.2",
+    "apexcharts": "^3.27.2",
+    "chart.js": "~4.4.4",
+    "exceljs": "~4.4.0",
+    "file-saver": "~2.0.5",
+    "flag-icon-css": "~4.1.7",
+    "moment": "~2.30.1",
+    "ngx-csv": "~0.3.2",
+    "ngx-material-timepicker": "~5.6.0",
+    "ngx-toastr": "~18.0.0",
+    "puppeteer": "^20.1.0",
+    "puppeteer-extra": "~3.3.6",
+    "puppeteer-extra-plugin-user-preferences": "~2.4.1",
+    "read-excel-file": "~5.8.1",
+    "rxjs": "~7.8.1",
+    "tslib": "~2.6.3",
+    "xlsx": "~0.18.5",
+    "zone.js": "~0.14.10"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~18.2.4",
+    "@angular/cli": "~18.2.4",
+    "@angular/compiler-cli": "~18.2.4",
+    "@babel/core": "~7.20.5",
+    "@babel/plugin-syntax-decorators": "~7.19.0",
+    "@babel/preset-env": "~7.20.2",
+    "@babel/preset-typescript": "~7.18.6",
+    "@jest/globals": "~29.3.1",
+    "@types/file-saver": "~2.0.5",
+    "@types/jest": "~29.2.3",
+    "@types/jquery": "~3.5.16",
+    "@types/node": "14.14.33",
+    "@types/puppeteer": "~7.0.4",
+    "babel-jest": "^29.0.0",
+    "chromedriver": "~110.0.0",
+    "convert-excel-to-json": "~1.7.0",
+    "gzipper": "~5.0.0",
+    "jest": "~29.7.0",
+    "jest-junit": "~15.0.0",
+    "jest-preset-angular": "~14.1.1",
+    "jest-puppeteer": "~6.2.0",
+    "jest-sonar-reporter": "~2.0.0",
+    "ts-jest": "~29.1.5",
+    "typescript": "~5.4.5"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.20.0"
+  },
+  "jest-junit": {
+    "outputName": "TESTS-junit.xml"
+  },
+  "jestSonar": {
+    "reportFile": "sq-test-report.xml",
+    "indent": 4
+  },
+  "jest": {
+    "testResultsProcessor": "jest-sonar-reporter",
+    "preset": "jest-preset-angular",
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setup-jest.ts"
+    ],
+    "coverageReporters": [
+      "text",
+      "cobertura",
+      "lcov"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/dist/"
+    ],
+    "transform": {
+      "^.+\\.(ts|js|html)$": [
+        "jest-preset-angular",
+        {
+          "tsconfig": "<rootDir>/tsconfig.spec.json",
+          "stringifyContentPathRegex": "\\.html$"
+        }
+      ]
+    }
+  }
+}

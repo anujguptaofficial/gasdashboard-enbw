@@ -1,0 +1,50 @@
+<div class="table-header">
+  <h1 class="var-margin" *ngIf="router.url == '/' + countryCode">
+    {{ displayCountryName }}
+  </h1>
+  <div class="main-nav">
+    <bricks-toggle-switch id="bcm-toggle" [checked]="selectedToggle" class="bcm-toggle" label="Percentage"
+      (toggleChange)="onChangeToggle($event)"></bricks-toggle-switch>
+    <bricks-icon class="bricks-icon" id="graph" [ngClass]="{ 'refresh-start': refreshStart }" (click)="refreshGrid()"
+      (keydown)="onIconKeyDown($event)" tabindex="0">bricks-load</bricks-icon>
+    <button id="graph-button" class="bricks-button button-important margin-bottom" style="margin-right: 2vw !important"
+      matTooltip="Graph" (click)="highChart()" [disabled]="disableGraphData">
+      <bricks-icon>bricks-graph</bricks-icon>Graphical Data
+    </button>
+    <button id="upload-button" class="bricks-button button-important margin-bottom" matTooltip="Upload document"
+      (click)="uploadFile()" [disabled]="!disableForecast || disableGraphData">
+      <bricks-icon>bricks-upload</bricks-icon>Upload
+    </button>
+    <mat-form-field id="dateField" class="navField" color="accent" appearance="fill">
+      <mat-label>Select Date</mat-label>
+      <input matInput id="scenarioDate-picker" [matDatepicker]="picker" (dateChange)="getScenarioDate($event)"
+        [required]="true" #scenarioDate [(ngModel)]="displayDate" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+   <mat-form-field id="scenario" floatLabel="always" class="navField mat-form-field-appearance-outline" *ngIf="displayScenario">
+   <mat-label>Scenario</mat-label>
+   <input type="text"
+    aria-label="Scenario"
+    matInput
+    [(ngModel)]="defaultScenario"
+    (input)="onSelectedScenario($event.target.value)"
+    [matAutocomplete]="auto"
+    [formControl]="formControl"
+  />
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectedScenario($event.option.value)">
+    <mat-option *ngFor="let item of scenarioNames" [value]="item">{{
+       item
+        }}</mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+    <mat-form-field id="granularity" class="navField mat-form-field-appearance-outline" floatLabel="always">
+      <mat-label> Granularity </mat-label>
+      <mat-select id="granularity" [(ngModel)]="selectedOption" (valueChange)="onSelectedGranularity($event)">
+        <mat-option *ngFor="let option of granularityOptions" value="{{ option }}">
+          {{ option }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>

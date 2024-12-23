@@ -1,0 +1,117 @@
+@import "@ag-grid-community/styles/ag-grid.css";
+@import "@ag-grid-community/styles/ag-theme-alpine.css";
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+.no-data {
+  padding: 10px;
+  border: 2px solid #444;
+  background: lightgoldenrodyellow;
+}
+
+.data-loading {
+  padding: 10px;
+  border: 2px solid #444;
+  background: lightgoldenrodyellow;
+}
+
+.app-header {
+  cursor: pointer;
+}
+
+.option {
+  margin-left: 15px;
+}
+
+.ag-theme-alpine .ag-ltr .ag-header-select-all {
+  padding-top: 5px;
+}
+
+.ag-header-cell-comp-wrapper {
+  position: fixed;
+}
+
+.ag-header-cell-label {
+  align-items: start;
+}
+
+.ag-header-cell-label .ag-header-cell-text {
+  transform: translateX(12px) rotate(-70deg);
+  transform-origin: bottom left;
+  margin-top: 107px;
+  display: inline-block;
+}
+
+.ag-header-group-cell {
+  position: relative !important;
+}
+
+.ag-header-row-column-group {
+  position: relative;
+  height: unset !important;
+}
+
+.summer {
+  background-color: #e9ffb2;
+}
+
+.winter {
+  background-color: #e0eff6;
+}
+
+.bomDisplay {
+  background-color: #f3d7fc;
+}
+
+.ag-pivot-off .ag-header-group-cell {
+  font-size: 20px;
+  width: 100% !important;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.ag-theme-alpine .ag-header-row:not(:first-child) .ag-header-cell,
+.ag-theme-alpine
+  .ag-header-row:not(:first-child)
+  .ag-header-group-cell.ag-header-group-cell-with-group {
+  border-top: none;
+}
+
+.ag-theme-alpine .ag-header-row {
+  width: 100% !important;
+}
+
+.ag-header-container {
+  width: 100% !important;
+}
+
+.ag-header-group-cell > .ng-star-inserted {
+  width: 100% !important;
+}
+
+.ag-theme-alpine .ag-row {
+  font-size: 12px !important;
+}
+
+span.ag-header-cell-text {
+  font-size: 14px !important;
+}
+
+h1.var-margin.ng-star-inserted {
+  margin-top: 20px !important;
+}
+
+.ag-floating-bottom {
+  background-color: #f3d7fc;
+  overflow-y: hidden !important;
+}
+
+.appearance {
+  color: #e2001a;
+}

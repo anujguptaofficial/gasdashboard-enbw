@@ -1,0 +1,24 @@
+<app-navbar
+  [countryCode]="countryCode"
+  [refreshStart]="refreshStart"
+  [disableGraphData]="disableGraphData"
+></app-navbar>
+<ag-grid-angular
+  style="width: 100%"
+  class="historic-table ag-theme-alpine"
+  id="myGrid"
+  [columnDefs]="columnDefs"
+  [defaultColDef]="defaultColDef"
+  (gridReady)="onGridReady($event)"
+  [rowData]="rowData"
+  [rowHeight]="rowHeight"
+  [suppressDragLeaveHidesColumns]="true"
+  [components]="frameworkComponents"
+  (rowDataUpdated)="onRowDataChanged($event)"
+  [modules]="modules"
+  (bodyScroll)="handleScroll($event)"
+  [pinnedBottomRowData]="pinnedBottomRowData"
+  [noRowsOverlayComponent]="noRowsOverlayComponent"
+  (columnMoved)="onColumnMoved($event)"
+>
+</ag-grid-angular>

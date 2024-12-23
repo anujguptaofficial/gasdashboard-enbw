@@ -1,0 +1,18 @@
+:host {
+  display: inline-block;
+  width: 100%;
+}
+
+.header-name {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+
+  @media (min-width: 992px) {
+    width: calc(100% - 20px);
+  }
+}
+
+button.bricks-button.button-icon-only {
+  z-index: 1 !important;
+}

@@ -1,0 +1,14 @@
+<ag-grid-angular *ngIf="!isSeason" style="width: 100%" class="forecast-table ag-theme-alpine"
+  [columnDefs]="forecastColDefs" [defaultColDef]="forecastDefaultColDef" (gridReady)="onGridReady($event)"
+  [rowData]="forecastData" [modules]="modules" [rowBuffer]="0" [cacheOverflowSize]="1" [rowHeight]="rowHeight"
+  [maxConcurrentDatasourceRequests]="1" [maxBlocksInCache]="1" [rowModelType]="'infinite'" [rowSelection]="'multiple'"
+  [cacheBlockSize]="'60'" [infiniteInitialRowCount]="'60'" [components]="frameworkComponents"
+  [serverSideInfiniteScroll]="true" [noRowsOverlayComponent]="noRowsOverlayComponent">
+</ag-grid-angular>
+<ag-grid-angular *ngIf="isSeason" style="width: 100%" class="forecast-table ag-theme-alpine"
+  [columnDefs]="forecastColDefs" [defaultColDef]="forecastDefaultColDef" (gridReady)="onGridReady($event)"
+  [rowData]="forecastData" [modules]="modules" [rowBuffer]="0" [cacheOverflowSize]="1" [rowHeight]="rowHeight"
+  [maxConcurrentDatasourceRequests]="1" [maxBlocksInCache]="1" [rowModelType]="'infinite'" [rowSelection]="'multiple'"
+  [cacheBlockSize]="'15'" [infiniteInitialRowCount]="'15'" [components]="frameworkComponents"
+  [serverSideInfiniteScroll]="true" [noRowsOverlayComponent]="noRowsOverlayComponent">
+</ag-grid-angular>

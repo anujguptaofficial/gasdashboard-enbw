@@ -1,0 +1,30 @@
+<bricks-app-frame>
+  <bricks-app-toolbar
+    title="Supply and Demand Dashboard"
+    attributeColor="accent"
+    attributeLabel="Stage"
+    attributeValue="{{ currentEnv }}"
+    class="app-header"
+    (homeClick)="navigateToHome()"
+  >
+    <button mat-button [matMenuTriggerFor]="menu">
+      <bricks-icon class="profile"
+        >bricks-avatar
+        <mat-menu #menu="matMenu">
+          <div class="user-detail">
+            <span class="dot">{{ avatar === "" ? "Hi ✋" : avatar }}</span>
+            <div class="user-data">
+              <span style="font-weight: bold; font-size: 18px">{{
+                userName === "" ? "Hi there!" : userName
+              }}</span>
+              <span>{{ email }}</span>
+              <a style="border-bottom: none" routerLink="/user">View account</a>
+            </div>
+            <a class="sign-out" (click)="logout()">Sign out</a>
+          </div>
+        </mat-menu>
+      </bricks-icon>
+    </button>
+  </bricks-app-toolbar>
+  <app-sidebar></app-sidebar>
+</bricks-app-frame>

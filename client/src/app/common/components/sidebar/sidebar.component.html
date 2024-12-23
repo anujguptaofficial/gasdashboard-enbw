@@ -1,0 +1,12 @@
+<bricks-sidebar-container>
+  <bricks-sidebar
+    id="sidebar"
+    [mode]="'over'"
+    [open]="false"
+    [hideDefaultFooter]="true"
+    [closeSidebarOnMenuItemClick]="true"
+  >
+    <bricks-sidebar-menu-item [menuList]="menuList"> </bricks-sidebar-menu-item>
+  </bricks-sidebar>
+  <router-outlet></router-outlet>
+</bricks-sidebar-container>

@@ -1,0 +1,6 @@
+<ng-container *ngIf="isLoading; else valueTemplate">
+  <img src="https://www.ag-grid.com/example-assets/loading.gif" alt="loadingGif">
+</ng-container>
+<ng-template #valueTemplate>
+  {{ value }}
+</ng-template>

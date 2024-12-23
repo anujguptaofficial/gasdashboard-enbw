@@ -1,0 +1,29 @@
+.line-chart {
+  height: 100%;
+  width: 100%;
+}
+
+h1 {
+  margin: 10px 0;
+  font-weight: bold;
+  text-align: center;
+}
+
+h4 {
+  margin-block-start: 0;
+  margin-block-end: 1em;
+}
+
+.chart-body {
+  padding: 0 var(--spacing-m);
+}
+
+.chart-header {
+  position: sticky !important;
+  top: 0 !important;
+  background: white !important;
+}
+
+.chart-body > .bricks-modal-body {
+  display: grid !important;
+}

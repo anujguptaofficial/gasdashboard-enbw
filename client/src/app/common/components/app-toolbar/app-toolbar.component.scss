@@ -1,0 +1,51 @@
+.profile {
+  cursor: pointer;
+}
+
+.dot {
+  min-height: 100px;
+  min-width: 100px;
+  height: fit-content;
+  width: fit-content;
+  background-color: rgba(0, 103, 181, 1);
+  border-radius: 50%;
+  position: relative;
+  line-height: 100px;
+  display: table-cell;
+  font-family: 'Segoe UI', 'Segoe UI Web Regular', 'Segoe UI Symbol',
+    'Helvetica Neue', 'BBAlpha Sans', 'S60 Sans', Arial, sans-serif;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+  font-weight: bold;
+}
+
+.mat-menu-panel {
+  max-width: fit-content !important;
+}
+
+::ng-deep.mat-menu-panel .mat-menu-content .mat-menu-item:hover {
+  background-color: transparent !important;
+}
+
+.sign-out {
+  white-space: nowrap;
+  border-bottom: none;
+  max-height: 15px;
+  padding: 5px;
+}
+
+.user-detail {
+  display: flex;
+  padding: 10px;
+}
+
+.user-data {
+  display: grid;
+  padding: 0px 20px;
+  align-items: center;
+}
+
+.sign-out:hover {
+  background-color: rgba(0, 0, 0, .08);
+}

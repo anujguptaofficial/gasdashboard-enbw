@@ -1,0 +1,15 @@
+.serverless
+**/node_modules
+**/dist
+*.sh
+target
+.vscode
+!.vscode/launch.json
+
+**/.angular
+.idea
+
+**/coverage
+**/TESTS*
+
+**/*test-report*.xml

@@ -1,0 +1,18 @@
+{
+  "name": "gasdashboard.frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git@ssh.dev.azure.com:v3/enbw/gasdashboard/gd-frontend"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+  }
+}

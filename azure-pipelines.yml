@@ -1,0 +1,97 @@
+trigger:
+  branches:
+    include:
+      - main
+      - develop
+  paths:
+    exclude:
+      - README.md
+      - docs
+
+parameters:
+  - name: deployFrontEnd
+    type: boolean
+    default: true
+  - name: deployStack
+    type: boolean
+    default: true
+  - name: cacheInvalidate
+    type: boolean
+    default: false
+  - name: stackTearDown
+    type: boolean
+    default: false
+  - name: isRelease
+    displayName: Execute Release
+    type: boolean
+    default: false
+
+variables:
+  serviceName: "gasdashboard-frontend"
+  sourceDirectory: $(Build.SourcesDirectory)
+  nexusiqAppId: "tradingmop.gasdashboard-devops.gd-frontend"
+  ${{ if and(eq(variables['Build.SourceBranchName'], 'main'), eq(parameters.isRelease, true)) }}:
+    env: prod
+    awsCredentials: "tradingmop.gasdashboard-prod.Aws"
+    ngBuildCommand: "ng build -c production --aot --build-optimizer --optimization"
+  ${{ elseif and(eq(variables['Build.SourceBranchName'], 'main'), eq(parameters.isRelease, false)) }}:
+    env: uat
+    awsCredentials: "tradingmop.gasdashboard-uat.Aws"
+    ngBuildCommand: "ng build -c production --aot --build-optimizer"
+  ${{ else }}:
+    env: test
+    awsCredentials: "tradingmop.gasdashboarddev.Aws"
+    ngBuildCommand: "ng build -c production --aot --build-optimizer"
+
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: tw-public/templates.azure-pipelines
+
+stages:
+  - ${{ if parameters.deployFrontEnd }}:
+      - template: angular-stages.yml@templates
+        parameters:
+          artifactsName: "front_end"
+          nexusIqAppId: $(nexusiqAppId)
+          sourceDirectory: $(Build.SourcesDirectory)/client
+          sonarPropertiesFile: $(Build.SourcesDirectory)/client/sonar-project.properties
+          nexusIqScanTargets: $(Build.SourcesDirectory)/client/package-lock.json
+          preTestSteps:
+            - bash: |
+                npx $(ngBuildCommand)
+              displayName: "Ng build"
+              workingDirectory: $(Build.SourcesDirectory)/client
+          angularTestCommand: "npm run test:coverage"
+          ngBuildCommand: $(ngBuildCommand)
+          ignoreAngularTestResults: false
+          zipReverseExtensionOrder: false
+          testCoverageTool: "Cobertura"
+          testCoverageFileLocation: $(sourceDirectory)/client/coverage/cobertura-coverage.xml
+          testResultFiles: $(sourceDirectory)/client/output/test/junit.xml
+          postBuildSteps:
+            - template: jobs/s3-upload.yml@templates
+              parameters:
+                awsCredentials: $(awsCredentials)
+                sourceDirectory: $(sourceDirectory)/client/dist/gd-frontend
+                removeExisting: true
+                bucketNameExportKey: gasdashboard-infrastructure:$(env):serverBucketName
+
+      - ${{ if not(eq(variables['Build.SourceBranchName'], 'main')) }}:
+          - stage: ng_test_puppeteer
+            dependsOn:
+              - ng_build
+            jobs:
+              - job: pupeteer
+                steps:
+                  - template: nodejs/npm-test.yml@templates
+                    parameters:
+                      stageInit:
+                        artifacts:
+                          - "ng-npm-dependencies-artifact"
+                        sourceDirectory: $(Build.SourcesDirectory)/client
+                      npmTestCommand: "npm run test:puppeteer"
+                      testEnvVars:
+                        puppetteerPassword: $(puppeteer-password)
+                      sonarQubeAnalysisForceIgnore: true

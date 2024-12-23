@@ -1,0 +1,10 @@
+# depends on auth-provider and alb modules
+provider:
+  alb:
+    authorizers:
+      userPoolAuth:
+        type: 'cognito'
+        userPoolArn: ${cf:gasdashboard-infrastructure-${self:custom.stage}.UserPoolArn}
+        userPoolClientId: ${cf:gasdashboard-infrastructure-${self:custom.stage}.UserPoolClientId}
+        userPoolDomain: ${cf:gasdashboard-infrastructure-${self:custom.stage}.UserPoolDomain}
+        onUnauthenticatedRequest: "authenticate"

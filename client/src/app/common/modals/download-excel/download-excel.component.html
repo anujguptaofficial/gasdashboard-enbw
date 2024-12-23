@@ -1,0 +1,54 @@
+<bricks-modal (closeDialog)="closeDialog()">
+    <bricks-modal-header class="download-header">
+        Please choose date to download the data
+    </bricks-modal-header>
+    <bricks-modal-body class="from-to-datepicker">
+        <mat-form-field class="dateField" color="accent" appearance="fill">
+            <mat-label>From</mat-label>
+            <input matInput id="from-date-picker" [matDatepicker]="picker1" (dateChange)="getFromDate($event)"
+                [required]="true" #fromdate />
+            <mat-hint>DD.MM.YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="dateField" color="accent" appearance="fill">
+            <mat-label>To</mat-label>
+            <input matInput id="to-date-picker" [matDatepicker]="picker2" (dateChange)="getToDate($event)" #todate
+                [required]="true" />
+            <mat-hint>DD.MM.YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2 color="primary"></mat-datepicker>
+        </mat-form-field>
+    </bricks-modal-body>
+    <bricks-modal-footer class="download-button">
+        <h4 id="download-error" *ngIf="downloadError" style="color: red; font-weight: bold; flex: auto">
+            {{ downloadError }}
+        </h4>
+        <button *ngIf="downloadError" class="bricks-button button-important margin-bottom" [matTooltip]="
+        !fromDate || !toDate
+          ? 'Please select from & to date both'
+          : 'Export to Excel'
+      " [disabled]="!fromDate || !toDate" (click)="downloadFile()">
+            <svg class="spinner" viewBox="0 0 50 50" *ngIf="loading | async">
+                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+            </svg>
+            <bricks-icon>bricks-download</bricks-icon>
+            Try again
+        </button>
+        <h4 id="download-success" *ngIf="!downloadError"
+            style="color: green; font-weight: bold; flex: auto; padding-right: 20px">
+            {{ successMessage }}
+        </h4>
+        <button *ngIf="!downloadError" class="bricks-button button-important margin-bottom" [matTooltip]="
+        !fromDate || !toDate
+          ? 'Please select from & to date both'
+          : 'Export to Excel'
+      " [disabled]="!fromDate || !toDate" (click)="downloadFile()">
+            <svg class="spinner" viewBox="0 0 50 50" *ngIf="loading | async">
+                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+            </svg>
+            <bricks-icon>bricks-download</bricks-icon>
+            Download
+        </button>
+    </bricks-modal-footer>
+</bricks-modal>

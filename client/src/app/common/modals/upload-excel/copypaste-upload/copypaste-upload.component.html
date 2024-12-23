@@ -1,0 +1,17 @@
+<div class="copy-pastedata" (paste)="onPasteData($event)" *ngIf="!textArea">
+    Paste copied data below: <br>
+    <textarea id="paste-data" (input)="onChange($event)" [(ngModel)]="pasteTextArea" *ngIf="!textArea"
+        class="paste-textarea"></textarea>
+</div>
+<div>{{pastedData}}</div>
+<table mat-table [dataSource]="dataSource" (contentChanged)="uploadPastedData()"
+    [ngClass]="!textArea ? 'table-display' : 'mat-elevation-z8'">
+    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+        <th mat-header-cell *matHeaderCellDef> {{ column }} </th>
+        <td mat-cell *matCellDef="let element">
+            {{ element[column] }}
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

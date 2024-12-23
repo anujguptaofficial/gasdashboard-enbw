@@ -1,0 +1,29 @@
+.app-header {
+  cursor: pointer;
+}
+
+.var-margin {
+  margin: var(--spacing-s) 0 0 0;
+  font-weight: bold;
+}
+
+.mat-select-placeholder {
+  color: black !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-label {
+  margin-top: -0.55em !important;
+}
+
+.mat-form-field-label {
+  font: caption !important;
+}
+
+.flag-icon {
+  display: flex;
+  white-space: nowrap;
+  background-size: 22px;
+  padding-left: 20px;
+  background-position: 4%;
+  width: 100%;
+}

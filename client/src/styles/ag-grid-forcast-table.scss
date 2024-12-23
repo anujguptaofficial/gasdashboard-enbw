@@ -1,0 +1,11 @@
+.forecast-table
+  > .ag-root-wrapper
+  > .ag-root-wrapper-body
+  > .ag-root
+  > .ag-header {
+  height: 0 !important;
+  min-height: 0 !important;
+}
+.forecast-table > .ag-root-wrapper.ag-layout-normal {
+  height: 36vh !important;
+}

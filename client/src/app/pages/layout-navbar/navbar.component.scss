@@ -1,0 +1,87 @@
+@import "@ag-grid-community/styles/ag-grid.css";
+@import "@ag-grid-community/styles/ag-theme-alpine.css";
+
+.export-button {
+  float: right;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+.no-data {
+  padding: 10px;
+  border: 2px solid #444;
+  background: lightgoldenrodyellow;
+}
+
+.data-loading {
+  padding: 10px;
+  border: 2px solid #444;
+  background: lightgoldenrodyellow;
+}
+
+.app-header {
+  cursor: pointer;
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  height: 75px;
+  margin-left: 20px;
+}
+
+.option {
+  margin-left: 15px;
+}
+
+.main-nav {
+  display: flex;
+  margin-right: 20px;
+
+  .navField {
+    width: 226.6px;
+    padding-left: 20px;
+    margin-top: 5px;
+  }
+}
+
+.bcm-toggle {
+  padding-right: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.bricks-icon {
+  margin-right: 40px;
+  display: flex;
+  align-items: center;
+  height: auto;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.refresh-start {
+  animation-name: rotate;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-play-state: running;
+}
